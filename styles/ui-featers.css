@@ -1,0 +1,6 @@
+/*main controler styles/functions*/
+
+.done-true {
+  text-decoration: 	line-through;
+  color: 			grey;
+}

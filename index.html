@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+	<head>
+		<!-- jquery 1.11.0 -->
+	 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	 	
+		<!-- bootstrap 3.1.1 -->
+	 	<!-- Latest compiled and minified CSS -->
+	 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+		<!--angularjs 1.2.15 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.3/angular.min.js"></script>
+		
+		<!-- app controllers -->	
+		<script src="scripts/app-controllers.js"></script>
+		
+		<!-- styles -->
+		<link rel="stylesheet" href="styles/ui-featers.css"/>
+	</head>
+	<body>
+		<h1>randomize workourts</h1>
+		<div ng-controller="workoutsCtrl">
+			[ <a href="" ng-click="remove()">Remove Workouts</a> ]
+			<ul class="unstyled">
+		        <li ng-repeat="workout in workouts" class="list-group-item">
+		          <input type="checkbox" ng-model="workout.done">
+		          <span class="done-{{workout.done}}">{{workout.workout}}</span>
+		        </li>
+		    </ul>
+		    <form ng-submit="addWorkout()">
+		        <input type="text" ng-model="workoutText"  size="30" placeholder="add new workout here">
+		        <button class="btn-primary" type="submit" value="">add <span class="glyphicon glyphicon-plus"></span></button>
+		    </form>
+			<div class="panel-heading">Calader</div>
+			<div ng-controller="MyCtrl" class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<tr class="days">
+						<th scope="col" title="Monday">Monday</th>
+						<th scope="col" title="Tuesday">Tuesday</th>
+						<th scope="col" title="Wednesday">Wensday</th>
+						<th scope="col" title="Thursday">Thursday</th>
+						<th scope="col" title="Friday">Friday</th>
+						<th scope="col" title="Saturday">Saturday</th>
+						<th scope="col" title="Sunday">Sunday</th>
+					</tr>
+					<tr ng-controller="MyCtrl" ng-repeat="days in dates">
+				         <td ng-repeat="day in days" class="day{{ day-1 }}">
+				            {{ day }}
+				            <span class="workout{{day-1}}">workout</span>
+				            <!-- After seven iterations a new `<tr>` should be aded -->
+				        </td>
+				    </tr>
+				</table>
+			</div>
+			<button class="btn-primary" onClick="printShuffle()">random</button>
+		</div>
+	</body>
+</html>
